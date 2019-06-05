@@ -32,13 +32,18 @@ window.renderStatistics = function (ctx, names, times) {
 
   ctx.fillStyle = '#000000';
   ctx.font = '16px PT Mono';
-  ctx.fillText('Ура вы победили', coordinateText, CLOUD_Y + 3 * GAP);
+  ctx.fillText('Ура вы победили!', coordinateText, CLOUD_Y + 3 * GAP);
   ctx.fillText('Список результатов:', coordinateText, CLOUD_Y + 5 * GAP);
 
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
     ctx.fillText(Math.floor(times[i]), coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, 90 + (BAR_HEIGTH - (times[i] * BAR_HEIGTH) / maxTime));
+    if (names[i] === 'Вы') {
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    } else {
+      ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+    }
     ctx.fillRect(coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, 100 + (BAR_HEIGTH - (times[i] * BAR_HEIGTH) / maxTime), BAR_WIDTH, (times[i] * BAR_HEIGTH) / maxTime);
     ctx.fillStyle = '#000000';
     ctx.font = '16px PT Mono';
