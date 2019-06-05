@@ -38,10 +38,11 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
-    ctx.fillRect(coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, 90 + (150 - (times[i] * BAR_HEIGTH) / maxTime), BAR_WIDTH, (times[i] * BAR_HEIGTH) / maxTime);
+    ctx.fillText(Math.floor(times[i]), coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, 90 + (BAR_HEIGTH - (times[i] * BAR_HEIGTH) / maxTime));
+    ctx.fillRect(coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, 100 + (BAR_HEIGTH - (times[i] * BAR_HEIGTH) / maxTime), BAR_WIDTH, (times[i] * BAR_HEIGTH) / maxTime);
     ctx.fillStyle = '#000000';
     ctx.font = '16px PT Mono';
-    ctx.fillText(names[i], coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, CLOUD_HEIGHT - GAP);
+    ctx.fillText(names[i], coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, CLOUD_HEIGHT);
   }
 };
 
