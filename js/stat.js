@@ -8,7 +8,8 @@ var GAP = 10;
 var BAR_WIDTH = 40;
 var BAR_HEIGTH = 150;
 var BAR_GAP = 50;
-var X_COORDINATE = CLOUD_X + 4 * GAP;
+var coordinateGraph = CLOUD_X + 4 * GAP;
+var coordinateText = CLOUD_X + 2 * GAP;
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -31,16 +32,16 @@ window.renderStatistics = function (ctx, names, times) {
 
   ctx.fillStyle = '#000000';
   ctx.font = '16px PT Mono';
-  ctx.fillText('Ура вы победили', CLOUD_X + 2 * GAP, CLOUD_Y + 3 * GAP);
-  ctx.fillText('Список результатов:', CLOUD_X + 2 * GAP, CLOUD_Y + 5 * GAP);
+  ctx.fillText('Ура вы победили', coordinateText, CLOUD_Y + 3 * GAP);
+  ctx.fillText('Список результатов:', coordinateText, CLOUD_Y + 5 * GAP);
 
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
-    ctx.fillRect(X_COORDINATE + (BAR_WIDTH + BAR_GAP) * i, 90 + (150 - (times[i] * BAR_HEIGTH) / maxTime), BAR_WIDTH, (times[i] * BAR_HEIGTH) / maxTime);
+    ctx.fillRect(coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, 90 + (150 - (times[i] * BAR_HEIGTH) / maxTime), BAR_WIDTH, (times[i] * BAR_HEIGTH) / maxTime);
     ctx.fillStyle = '#000000';
     ctx.font = '16px PT Mono';
-    ctx.fillText(names[i], X_COORDINATE + (BAR_WIDTH + BAR_GAP) * i, CLOUD_HEIGHT - GAP);
+    ctx.fillText(names[i], coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, CLOUD_HEIGHT - GAP);
   }
 };
 
