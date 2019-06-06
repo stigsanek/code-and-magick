@@ -26,6 +26,12 @@ var getMaxElement = function (array) {
   return maxElement;
 };
 
+var generateSaturateColor = function () {
+  var randomNumber = Math.floor(Math.random() * 128);
+  var randomColor = 'rgb(' + randomNumber + ', ' + randomNumber + ', ' + (255 - randomNumber) + ')';
+  return randomColor;
+};
+
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, 'rgb(255, 255, 255)');
@@ -42,7 +48,7 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+      ctx.fillStyle = generateSaturateColor();
     }
     ctx.fillRect(coordinateGraph + (BAR_WIDTH + BAR_GAP) * i, 100 + (BAR_HEIGTH - (times[i] * BAR_HEIGTH) / maxTime), BAR_WIDTH, (times[i] * BAR_HEIGTH) / maxTime);
     ctx.fillStyle = '#000000';
