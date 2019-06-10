@@ -16,18 +16,19 @@ var generateRandom = function (names, lastNames, mantleСolors, pupilColors) {
   var getRandom = function (randoms) {
     var randomValue = randoms[Math.floor(Math.random() * randoms.length)];
     return randomValue;
-  }
+  };
 
   for (var i = 0; i < 4; i++) {
     items[i] = {
       name: '',
       coatColor: '',
       eyesColor: ''
-    }
+    };
+
     items[i].name = getRandom(names) + ' ' + getRandom(lastNames);
     items[i].coatColor = getRandom(mantleСolors);
     items[i].eyesColor = getRandom(pupilColors);
-  };
+  }
 
   return items;
 };
@@ -47,10 +48,10 @@ var createWizard = function (objectWizard) {
 var addWizard = function (wizardElements) {
   var fragment = document.createDocumentFragment();
 
-  for (var i = 0; i < wizardElements.length; i ++) {
+  for (var i = 0; i < wizardElements.length; i++) {
     var newWizardElement = createWizard(wizardElements[i]);
     fragment.appendChild(newWizardElement);
-  };
+  }
 
   wizardList.appendChild(fragment);
 };
