@@ -33,9 +33,10 @@ var generateRandom = function (names, lastNames, mantleСolors, pupilColors) {
   return items;
 };
 
+var wizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+
 // Функция создания персонажа
 var createWizard = function (objectWizard) {
-  var wizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
   var newWizard = wizardTemplate.cloneNode(true);
   newWizard.querySelector('.setup-similar-label').textContent = objectWizard.name;
   newWizard.querySelector('.wizard-coat').style.fill = objectWizard.coatColor;
