@@ -5,12 +5,14 @@ var WIZARD_LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 
 var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
-var setup = document.querySelector('.setup');
-setup.classList.remove('hidden');
+var userDialog = document.querySelector('.setup');
+userDialog.classList.remove('hidden');
+var wizardList = document.querySelector('.setup-similar-list');
 
 // Функция генерации случайных данных
 var generateRandom = function (names, lastNames, mantleСolors, pupilColors) {
   var items = [];
+
   var getRandom = function (randoms) {
     var randomValue = randoms[Math.floor(Math.random() * randoms.length)];
     return randomValue;
@@ -40,3 +42,21 @@ var createWizard = function (objectWizard) {
 
   return newWizard;
 };
+
+//  Функция добавления персонажей в разметку
+var addWizard = function (wizardElements) {
+  var fragment = document.createDocumentFragment();
+
+  for (var i = 0; i < wizardElements.length; i ++) {
+    var newWizardElement = createWizard(wizardElements[i]);
+    fragment.appendChild(newWizardElement);
+  };
+
+  wizardList.appendChild(fragment);
+};
+
+// Генерируем массив данных и добавляем персонажей
+var randomData = generateRandom(WIZARD_NAMES, WIZARD_LAST_NAMES, WIZARD_COAT_COLORS, WIZARD_EYES_COLORS);
+addWizard(randomData);
+
+userDialog.querySelector('.setup-similar').classList.remove('hidden');
