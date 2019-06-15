@@ -103,5 +103,3 @@ setupClose.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
-
-
