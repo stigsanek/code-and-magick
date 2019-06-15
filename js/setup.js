@@ -88,7 +88,20 @@ setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
 setupClose.addEventListener('click', function () {
   closePopup();
 });
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
 
