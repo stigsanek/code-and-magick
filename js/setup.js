@@ -4,6 +4,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARD_FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 
@@ -11,13 +12,13 @@ var userDialog = document.querySelector('.setup');
 var wizardList = document.querySelector('.setup-similar-list');
 
 // Функция генерации случайных данных
+var getRandom = function (randoms) {
+  var randomValue = randoms[Math.floor(Math.random() * randoms.length)];
+  return randomValue;
+};
+
 var generateRandom = function (names, lastNames, mantleСolors, pupilColors) {
   var items = [];
-
-  var getRandom = function (randoms) {
-    var randomValue = randoms[Math.floor(Math.random() * randoms.length)];
-    return randomValue;
-  };
 
   for (var i = 0; i < 4; i++) {
     items[i] = {
@@ -103,4 +104,31 @@ setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
+});
+
+// Изменение вншнего вида персонажа по клику
+var coatWizardElement = userDialog.querySelector('.wizard-coat');
+var eyesWizardElement = userDialog.querySelector('.wizard-eyes');
+var fireballWizardElement = userDialog.querySelector('.setup-fireball-wrap');
+
+var coatInputElement = userDialog.querySelector('#coat-color');
+var eyesInputElement = userDialog.querySelector('#eyes-color');
+var fireballInputElement = userDialog.querySelector('#fireball-color');
+
+coatWizardElement.addEventListener('click', function () {
+  var randomColor = getRandom(WIZARD_COAT_COLORS);
+  coatWizardElement.style = 'fill: ' + randomColor;
+  coatInputElement.value = randomColor;
+});
+
+eyesWizardElement.addEventListener('click', function () {
+  var randomColor = getRandom(WIZARD_EYES_COLORS);
+  eyesWizardElement.style = 'fill: ' + randomColor;
+  eyesInputElement.value = randomColor;
+});
+
+fireballWizardElement.addEventListener('click', function () {
+  var randomColor = getRandom(WIZARD_FIREBALL_COLORS);
+  fireballWizardElement.style = 'background-color: ' + randomColor;
+  fireballInputElement.value = randomColor;
 });
