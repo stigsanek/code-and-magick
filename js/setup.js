@@ -67,9 +67,10 @@ userDialog.querySelector('.setup-similar').classList.remove('hidden');
 // Логика открытия и закрытия окна настройки персонажа
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = userDialog.querySelector('.setup-close');
+var userNameInput = userDialog.querySelector('.setup-user-name');
 
 var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
+  if (evt.keyCode === ESC_KEYCODE && userNameInput !== document.activeElement) {
     closePopup();
   }
 };
