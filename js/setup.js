@@ -115,20 +115,20 @@ var coatInputElement = userDialog.querySelector('#coat-color');
 var eyesInputElement = userDialog.querySelector('#eyes-color');
 var fireballInputElement = userDialog.querySelector('#fireball-color');
 
+var changeWizard = function (wizardAttribute, wizzardInputHidden, color, wizardStyle) {
+  var randomColor = getRandom(color);
+  wizardAttribute.style = wizardStyle + ': ' + randomColor;
+  wizzardInputHidden.value = randomColor;
+};
+
 coatWizardElement.addEventListener('click', function () {
-  var randomColor = getRandom(WIZARD_COAT_COLORS);
-  coatWizardElement.style = 'fill: ' + randomColor;
-  coatInputElement.value = randomColor;
+  changeWizard(coatWizardElement, coatInputElement, WIZARD_COAT_COLORS, 'fill');
 });
 
 eyesWizardElement.addEventListener('click', function () {
-  var randomColor = getRandom(WIZARD_EYES_COLORS);
-  eyesWizardElement.style = 'fill: ' + randomColor;
-  eyesInputElement.value = randomColor;
+  changeWizard(eyesWizardElement, eyesInputElement, WIZARD_EYES_COLORS, 'fill');
 });
 
 fireballWizardElement.addEventListener('click', function () {
-  var randomColor = getRandom(WIZARD_FIREBALL_COLORS);
-  fireballWizardElement.style = 'background-color: ' + randomColor;
-  fireballInputElement.value = randomColor;
+  changeWizard(fireballWizardElement, fireballInputElement, WIZARD_FIREBALL_COLORS, 'background-color');
 });
