@@ -1,5 +1,11 @@
 'use strict';
 
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+var WIZARD_FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+
 // Логика открытия и закрытия окна настройки персонажа
 var userDialog = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
@@ -60,7 +66,7 @@ var eyesInputElement = userDialog.querySelector('#eyes-color');
 var fireballInputElement = userDialog.querySelector('#fireball-color');
 
 var changeWizard = function (wizardAttribute, wizzardInputHidden, color, wizardStyle) {
-  var randomColor = getRandom(color);
+  var randomColor = color[Math.floor(Math.random() * color.length)];
   wizardAttribute.style = wizardStyle + ': ' + randomColor;
   wizzardInputHidden.value = randomColor;
 };
@@ -112,8 +118,8 @@ dialogHandler.addEventListener('mousedown', function (evt) {
     upEvt.preventDefault();
 
     if (dragged) {
-      var onClickPreventDefault = function (evt) {
-        evt.preventDefault();
+      var onClickPreventDefault = function (clickEvt) {
+        clickEvt.preventDefault();
         dialogHandler.removeEventListener('click', onClickPreventDefault);
       };
       dialogHandler.addEventListener('click', onClickPreventDefault);
