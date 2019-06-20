@@ -1,6 +1,4 @@
 'use strict';
-var USER_DIALOG_POS_X = 50;
-var USER_DIALOG_POS_Y = 80;
 
 // Логика открытия и закрытия окна настройки персонажа
 var userDialog = document.querySelector('.setup');
@@ -14,16 +12,22 @@ var onPopupEscPress = function (evt) {
   }
 };
 
+var userDialogDeafaultX = 0;
+var userDialogDeafaultY = 0;
+
 var openPopup = function () {
   userDialog.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
-  userDialog.style.top = USER_DIALOG_POS_Y + 'px';
-  userDialog.style.left = USER_DIALOG_POS_X + '%';
+  // Сохраняем первоначальные координаты окна
+  userDialogDeafaultX = userDialog.offsetLeft;
+  userDialogDeafaultY = userDialog.offsetTop;
 };
 
 var closePopup = function () {
   userDialog.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
+  userDialog.style.top = userDialogDeafaultY + 'px';
+  userDialog.style.left = userDialogDeafaultX + 'px';
 };
 
 setupOpen.addEventListener('click', function () {
