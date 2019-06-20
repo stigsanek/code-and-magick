@@ -20,6 +20,9 @@ var openPopup = function () {
 var closePopup = function () {
   userDialog.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
+  // Сбрасывам координаты окна после его закрытия
+  userDialog.style.top = 80 + 'px';
+  userDialog.style.left = 50 + '%';
 };
 
 setupOpen.addEventListener('click', function () {
