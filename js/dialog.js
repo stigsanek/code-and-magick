@@ -84,7 +84,6 @@ fireballWizardElement.addEventListener('click', function () {
 });
 
 // Перемещение окна настройки персонажа
-
 var dialogHandler = document.querySelector('.upload');
 
 dialogHandler.addEventListener('mousedown', function (evt) {
@@ -131,4 +130,38 @@ dialogHandler.addEventListener('mousedown', function (evt) {
 
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
+});
+
+// Перемещение артефактов
+var shopArtifactElement = userDialog.querySelector('.setup-artifacts-shop');
+var draggedItem = null;
+
+shopArtifactElement.addEventListener('dragstart', function (evt) {
+  if (evt.target.tagName.toLowerCase() === 'img') {
+    draggedItem = evt.target;
+    evt.dataTransfer.setData('text/plain', evt.target.alt);
+  }
+});
+
+var backpackArtifactsElement = userDialog.querySelector('.setup-artifacts');
+
+backpackArtifactsElement.addEventListener('dragover', function (evt) {
+  evt.preventDefault();
+  return false;
+});
+
+backpackArtifactsElement.addEventListener('drop', function (evt) {
+  evt.target.style.backgroundColor = '';
+  evt.target.appendChild(draggedItem);
+});
+
+
+backpackArtifactsElement.addEventListener('dragenter', function (evt) {
+  evt.target.style.backgroundColor = 'yellow';
+  evt.preventDefault();
+});
+
+backpackArtifactsElement.addEventListener('dragleave', function (evt) {
+  evt.target.style.backgroundColor = '';
+  evt.preventDefault();
 });
