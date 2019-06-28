@@ -17,7 +17,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     // Загружает данные
-    window.backend.load(window.dialog.add, onError, window.wizard.create);
+    window.backend.load(window.dialog.add, window.error.add, window.wizard.create);
     userDialog.querySelector('.setup-similar').classList.remove('hidden');
     // Управляет внешним видом персонажа
     window.colorize.change(coatWizardElement, coatInputElement, WIZARD_COAT_COLORS, 'fill');

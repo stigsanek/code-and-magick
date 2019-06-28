@@ -5,6 +5,7 @@
   var URL = 'https://js.dump.academy/code-and-magick/data';
   var STATUS_CODE_SUCCESS = 200;
   var ONE_SECOND = 1000;
+  var TIMEOUT = 10000;
 
   var loadData = function (onLoad, onError, method) {
 
@@ -27,7 +28,7 @@
       onError('Запрос не успел выполниться за ' + xhr.timeout / ONE_SECOND + 'секунд');
     });
 
-    xhr.timeout = ONE_SECOND;
+    xhr.timeout = TIMEOUT;
 
     xhr.open('GET', URL);
     xhr.send();
