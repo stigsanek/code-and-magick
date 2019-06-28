@@ -154,7 +154,20 @@
     evt.preventDefault();
   });
 
+  // Отправка формы
+  var form = userDialog.querySelector('.setup-wizard-form');
+
+  var submitForm = function (callback, onError) {
+    form.addEventListener('submit', function (evt) {
+      callback(new FormData(form), function () {
+        userDialog.classList.add('hidden');
+      }, onError);
+      evt.preventDefault();
+    });
+  };
+
   window.dialog = {
-    add: addWizard
+    add: addWizard,
+    save: submitForm
   };
 })();

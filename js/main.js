@@ -19,9 +19,13 @@
     // Загружает данные
     window.backend.load(window.dialog.add, window.error.add, window.wizard.create);
     userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
     // Управляет внешним видом персонажа
     window.colorize.change(coatWizardElement, coatInputElement, WIZARD_COAT_COLORS, 'fill');
     window.colorize.change(eyesWizardElement, eyesInputElement, WIZARD_EYES_COLORS, 'fill');
     window.colorize.change(fireballWizardElement, fireballInputElement, WIZARD_FIREBALL_COLORS, 'background-color');
+
+    // Отправляет данные на сервер
+    window.dialog.save(window.backend.save, window.error.add);
   });
 })();
