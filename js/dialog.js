@@ -4,6 +4,7 @@
 (function () {
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
+  var WIZARD_LENGTH = 4;
 
   // Метод добавления элементов
   var wizardList = document.querySelector('.setup-similar-list');
@@ -11,7 +12,7 @@
   var addWizard = function (wizardElements, method) {
     var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < wizardElements.length; i++) {
+    for (var i = 0; i < WIZARD_LENGTH; i++) {
       var newWizardElement = method(wizardElements[i]);
       fragment.appendChild(newWizardElement);
     }
@@ -153,7 +154,20 @@
     evt.preventDefault();
   });
 
+  // Отправка формы
+  var form = userDialog.querySelector('.setup-wizard-form');
+
+  var submitForm = function (callback, onError) {
+    form.addEventListener('submit', function (evt) {
+      callback(new FormData(form), function () {
+        userDialog.classList.add('hidden');
+      }, onError);
+      evt.preventDefault();
+    });
+  };
+
   window.dialog = {
-    add: addWizard
+    add: addWizard,
+    save: submitForm
   };
 })();
