@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  // Передаем метод отрисовки модулю фильтров
   window.filter.init(window.wizard.render);
 
   document.addEventListener('DOMContentLoaded', function () {
