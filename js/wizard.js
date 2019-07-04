@@ -9,9 +9,9 @@
 
   var createWizard = function (element) {
     var newWizard = wizardTemplate.cloneNode(true);
-    newWizard.querySelector('.setup-similar-label').textContent = element.name;
-    newWizard.querySelector('.wizard-coat').style.fill = element.coatColor;
-    newWizard.querySelector('.wizard-eyes').style.fill = element.eyesColor;
+    newWizard.querySelector('.setup-similar-label').innerText = element.name;
+    newWizard.querySelector('.wizard-coat').style.fill = element.colorCoat;
+    newWizard.querySelector('.wizard-eyes').style.fill = element.colorEyes;
 
     return newWizard;
   };
