@@ -17,7 +17,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     // Загружает данные
-    window.backend.load(window.dialog.add, window.error.add, window.wizard.create);
+    window.backend.load(window.wizard.render, window.error.add);
     userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
     // Управляет внешним видом персонажа

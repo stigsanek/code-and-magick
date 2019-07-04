@@ -4,21 +4,6 @@
 (function () {
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
-  var WIZARD_LENGTH = 4;
-
-  // Метод добавления элементов
-  var wizardList = document.querySelector('.setup-similar-list');
-
-  var addWizard = function (wizardElements, method) {
-    var fragment = document.createDocumentFragment();
-
-    for (var i = 0; i < WIZARD_LENGTH; i++) {
-      var newWizardElement = method(wizardElements[i]);
-      fragment.appendChild(newWizardElement);
-    }
-
-    wizardList.appendChild(fragment);
-  };
 
   // Логика открытия и закрытия окна настройки персонажа
   var userDialog = document.querySelector('.setup');
@@ -167,7 +152,6 @@
   };
 
   window.dialog = {
-    add: addWizard,
     save: submitForm
   };
 })();
