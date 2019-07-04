@@ -14,26 +14,22 @@
     return colors[randomColorIndex];
   }
 
-  var currentCoatColor;
   var coatWizardElement = userDialog.querySelector('.wizard-coat');
   var coatInputElement = userDialog.querySelector('#coat-color');
   coatWizardElement.addEventListener('click', function () {
     var newColor = getRandomColor(WIZARD_COAT_COLORS);
     coatWizardElement.style.fill = newColor;
     coatInputElement.value = newColor;
-    currentCoatColor = newColor;
-    updateWizards();
+    onCoatChange(newColor);
   });
 
-  var currentEyesColor;
   var eyesWizardElement = userDialog.querySelector('.wizard-eyes');
   var eyesInputElement = userDialog.querySelector('#eyes-color');
   eyesWizardElement.addEventListener('click', function () {
     var newColor = getRandomColor(WIZARD_EYES_COLORS);
     eyesWizardElement.style.fill = newColor;
     eyesInputElement.value = newColor;
-    currentEyesColor = newColor;
-    updateWizards();
+    onEyesChange(newColor);
   });
 
   var fireballWizardElement = userDialog.querySelector('.setup-fireball-wrap');
@@ -44,34 +40,42 @@
     fireballInputElement.value = newColor;
   });
 
+  var currentCoatColor;
+  var currentEyesColor;
   var wizards = [];
 
-  // Функция фильтрации похожих песронажей
-  var updateWizards = function () {
-    var sameCoatAndEyesWizards = wizards.filter(function (it) {
-      return it.colorCoat === currentCoatColor &&
-        it.colorEyes === currentEyesColor;
-    });
+  var getRank = function (wizard) {
+    var rank = 0;
 
-    var sameCoatWizards = wizards.filter(function (it) {
-      return it.colorCoat === currentCoatColor;
-    });
+    if (wizard.colorCoat === currentCoatColor) {
+      rank += 2;
+    }
+    if (wizard.colorEyes === currentEyesColor) {
+      rank += 1;
+    }
 
-    var sameEyesWizards = wizards.filter(function (it) {
-      return it.colorEyes === currentEyesColor;
-    });
-
-    var filteredWizards = sameCoatAndEyesWizards;
-    filteredWizards = filteredWizards.concat(sameCoatWizards);
-    filteredWizards = filteredWizards.concat(sameEyesWizards);
-    filteredWizards = filteredWizards.concat(wizards);
-
-    var uniqueWizards = filteredWizards.filter(function (it, i) {
-      return filteredWizards.indexOf(it) === i;
-    });
-
-    renderData(uniqueWizards);
+    return rank;
   };
+
+  var updateWizards = function () {
+    renderData(wizards.slice().sort(function (left, right) {
+      var rankDiff = getRank(right) - getRank(left);
+      if (rankDiff === 0) {
+        rankDiff = wizards.indexOf(left) - wizards.indexOf(right);
+      }
+      return rankDiff;
+    }));
+  };
+
+  var onEyesChange = function (color) {
+    currentEyesColor = color;
+    updateWizards();
+  }
+
+  var onCoatChange = function (color) {
+    currentCoatColor = color;
+    updateWizards();
+  }
 
   // Callback для добавления метода отрисовки песронажей
   var renderData = null;
