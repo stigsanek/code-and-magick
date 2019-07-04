@@ -70,18 +70,18 @@
   var onEyesChange = function (color) {
     currentEyesColor = color;
     updateWizards();
-  }
+  };
 
   var onCoatChange = function (color) {
     currentCoatColor = color;
     updateWizards();
-  }
+  };
 
-  // Callback для добавления метода отрисовки песронажей
+  // Callback для добавления метода отрисовки персонажей
   var renderData = null;
   var addMethod = function (method) {
     renderData = method;
-  }
+  };
 
   // Метод отрисовки похожих персонажей
   var successHandler = function (data) {
@@ -89,8 +89,8 @@
     updateWizards();
   };
 
-  window.colorize = {
+  window.filter = {
     init: addMethod,
-    filter: successHandler
-  }
+    change: successHandler
+  };
 })();
