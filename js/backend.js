@@ -11,14 +11,14 @@
   var TIMEOUT = 10000;
 
   // Метод загрузки данных данных
-  var loadData = function (onLoad, onError, method) {
+  var loadData = function (onLoad, onError) {
 
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
       if (xhr.status === CODE_SUCCESS) {
-        onLoad(xhr.response, method);
+        onLoad(xhr.response);
       } else {
         onError('Cтатус ответа: ' + xhr.status + ' ' + xhr.statusText);
       }
@@ -29,7 +29,7 @@
     });
 
     xhr.addEventListener('timeout', function () {
-      onError('Запрос не успел выполниться за ' + xhr.timeout / ONE_SECOND + 'секунд');
+      onError('Запрос не успел выполниться за ' + xhr.timeout / ONE_SECOND + ' секунд');
     });
 
     xhr.timeout = TIMEOUT;
